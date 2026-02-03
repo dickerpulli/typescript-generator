@@ -8,7 +8,7 @@
     - "Close" the repo
     - wait for closing activities
     - "Release" the repo
-- wait for the release to appear in Maven Central - https://repo1.maven.org/maven2/cz/habarta/typescript-generator/
+- wait for the release to appear in Maven Central - https://repo1.maven.org/maven2/de/tbosch/typescript-generator/
 - write release notes
 - run "Release to Gradle plugin portal" GitHub Action
 - close/update relevant issues and PRs

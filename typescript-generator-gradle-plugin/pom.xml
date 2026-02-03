@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cz.habarta.typescript-generator</groupId>
+        <groupId>de.tbosch.typescript-generator</groupId>
         <artifactId>typescript-generator</artifactId>
-        <version>3.2-SNAPSHOT</version>
+        <version>3.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>typescript-generator-gradle-plugin</artifactId>
@@ -59,9 +59,9 @@
             <version>2.4.21</version>
         </dependency>
         <dependency>
-            <groupId>cz.habarta.typescript-generator</groupId>
+            <groupId>de.tbosch.typescript-generator</groupId>
             <artifactId>typescript-generator-core</artifactId>
-            <version>3.2-SNAPSHOT</version>
+            <version>3.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

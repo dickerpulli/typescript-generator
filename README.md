@@ -1,18 +1,22 @@
-[![Maven Central](https://img.shields.io/maven-central/v/cz.habarta.typescript-generator/typescript-generator-core.svg)](https://repo1.maven.org/maven2/cz/habarta/typescript-generator/typescript-generator-core/)
-[![Appveyor](https://img.shields.io/appveyor/ci/vojtechhabarta/typescript-generator/main.svg)](https://ci.appveyor.com/project/vojtechhabarta/typescript-generator)
-[![Stars](https://img.shields.io/github/stars/vojtechhabarta/typescript-generator.svg?style=social)](https://github.com/vojtechhabarta/typescript-generator)
+[![Maven Central](https://img.shields.io/maven-central/v/de.tbosch.typescript-generator/typescript-generator-core.svg)](https://repo1.maven.org/maven2/de/tbosch/typescript-generator/typescript-generator-core/)
+[![Appveyor](https://img.shields.io/appveyor/ci/vojtechhabarta/typescript-generator/main.svg)](https://ci.appveyor.com/project/dickerpulli/typescript-generator)
+[![Stars](https://img.shields.io/github/stars/vojtechhabarta/typescript-generator.svg?style=social)](https://github.com/dickerpulli/typescript-generator)
 
 Quick links:
 [Configuration parameters](https://www.habarta.cz/typescript-generator/maven/typescript-generator-maven-plugin/generate-mojo.html)
 |
-[Breaking changes](https://github.com/vojtechhabarta/typescript-generator/wiki/Breaking-Changes)
+[Breaking changes](https://github.com/dickerpulli/typescript-generator/wiki/Breaking-Changes)
 |
-[Release notes](https://github.com/vojtechhabarta/typescript-generator/releases)
-|
-[Playground _(beta)_](https://jechlin.github.io/ts-gen-aws/)
+[Release notes](https://github.com/dickerpulli/typescript-generator/releases)
 
 typescript-generator
 ====================
+
+:information_source: This is a fork of [vojtechhabarta/typescript-generator](https://github.com/vojtechhabarta/typescript-generator).
+It seemms that the author of the original code does not maintain it anymore, so I decided to fork it to release a version 
+including Jackson 3 support.
+---
+
 typescript-generator is a tool for generating TypeScript definition files (.d.ts) from Java JSON classes.
 If you have REST service written in Java (or another JVM language) using object to JSON mapping you can use typescript-generator to generate TypeScript interfaces from Java classes.
 
@@ -59,7 +63,7 @@ Maven
 In Maven build you can use `typescript-generator-maven-plugin` like this:
 ``` xml
 <plugin>
-    <groupId>cz.habarta.typescript-generator</groupId>
+    <groupId>de.tbosch.typescript-generator</groupId>
     <artifactId>typescript-generator-maven-plugin</artifactId>
     <version>x.y.z</version>
     <executions>
@@ -88,22 +92,22 @@ Detailed description how to configure typescript-generator-maven-plugin is on ge
 Gradle
 ------
 
-In Gradle build you can use `cz.habarta.typescript-generator` plugin like this:
+In Gradle build you can use `de.tbosch.typescript-generator` plugin like this:
 ```groovy
 plugins {
-    id 'cz.habarta.typescript-generator' version 'x.y.z'
+    id 'de.tbosch.typescript-generator' version 'x.y.z'
 }
 
 generateTypeScript {
     jsonLibrary = 'jackson3'
     classes = [
-        'cz.habarta.typescript.generator.sample.Person'
+        'de.tbosch.typescript.generator.sample.Person'
     ]
     outputKind = 'module'
 }
 ```
 
-For the Kotlin Gradle DSL you can alternatively use the `cz.habarta.typescript-generator` plugin like this:
+For the Kotlin Gradle DSL you can alternatively use the `de.tbosch.typescript-generator` plugin like this:
 
 #### build.gradle.kts
 ```kotlin
@@ -112,7 +116,7 @@ import cz.habarta.typescript.generator.TypeScriptFileType
 import cz.habarta.typescript.generator.TypeScriptOutputKind
 
 plugins {
-    id("cz.habarta.typescript-generator") version "x.y.z"
+    id("de.tbosch.typescript-generator") version "x.y.z"
 }
 
 tasks {
@@ -168,7 +172,7 @@ REST frameworks
 Typescript-generator can generate not only TypeScript declarations for JSON Java classes but it can also generate client classes for REST services. Supported REST frameworks are JAX-RS and Spring. Client for JAX-RS service can be generated using `generateJaxrsApplicationClient` parameter, client for Spring service can be generated using `generateSpringApplicationClient`. Since Spring support is in separate module it is needed to add this module to typescript-generator dependencies. Here is example for Maven:
 ``` xml
 <plugin>
-    <groupId>cz.habarta.typescript-generator</groupId>
+    <groupId>de.tbosch.typescript-generator</groupId>
     <artifactId>typescript-generator-maven-plugin</artifactId>
     <version>${typescript-generator.version}</version>
     <configuration>
@@ -177,7 +181,7 @@ Typescript-generator can generate not only TypeScript declarations for JSON Java
     </configuration>
     <dependencies>
         <dependency>
-            <groupId>cz.habarta.typescript-generator</groupId>
+            <groupId>de.tbosch.typescript-generator</groupId>
             <artifactId>typescript-generator-spring</artifactId>
             <version>${typescript-generator.version}</version>
         </dependency>
@@ -189,8 +193,8 @@ Typescript-generator can generate not only TypeScript declarations for JSON Java
 Download
 --------
 Releases are available from Maven Central Repository.
-[Search](http://search.maven.org/#search%7Cga%7C1%7Ccz.habarta.typescript-generator) for dependency information for your build tool
-or download [typescript-generator-core](https://repo1.maven.org/maven2/cz/habarta/typescript-generator/typescript-generator-core) directly.
+[Search](http://search.maven.org/#search%7Cga%7C1%7Cde.tbosch.typescript-generator) for dependency information for your build tool
+or download [typescript-generator-core](https://repo1.maven.org/maven2/de/tbosch/typescript-generator/typescript-generator-core) directly.
 
 
 Wiki

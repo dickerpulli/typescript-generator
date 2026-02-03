@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.habarta.typescript-generator</groupId>
+    <groupId>de.tbosch.typescript-generator</groupId>
     <artifactId>typescript-generator</artifactId>
     <packaging>pom</packaging>
-    <version>3.2-SNAPSHOT</version>
+    <version>3.3-SNAPSHOT</version>
     <name>typescript-generator</name>
     <description>Generates TypeScript declaration file from specified java classes.</description>
-    <url>https://github.com/vojtechhabarta/typescript-generator</url>
+    <url>https://github.com/dickerpulli/typescript-generator</url>
 
     <modules>
         <module>typescript-generator-core</module>
@@ -29,12 +29,16 @@
             <name>Vojtech Habarta</name>
             <email>vojtech@habarta.cz</email>
         </developer>
+        <developer>
+            <name>Thomas Bosch</name>
+            <email>mail@tbosch.de</email>
+        </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:vojtechhabarta/typescript-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:vojtechhabarta/typescript-generator.git</developerConnection>
-        <url>https://github.com/vojtechhabarta/typescript-generator</url>
+        <connection>scm:git:git@github.com:dickerpulli/typescript-generator.git</connection>
+        <developerConnection>scm:git:git@github.com:dickerpulli/typescript-generator.git</developerConnection>
+        <url>https://github.com/dickerpulli/typescript-generator</url>
     </scm>
 
     <distributionManagement>
@@ -48,13 +52,13 @@
         </repository>
         <site>
             <id>github.io</id>
-            <url>http://vojtechhabarta.github.io/typescript-generator</url>
+            <url>https://dickerpulli.github.io/typescript-generator</url>
         </site>
     </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <kotlin.version>1.9.10</kotlin.version>
         <github.global.server>github</github.global.server>
     </properties>

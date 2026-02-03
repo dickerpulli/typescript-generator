@@ -1,12 +1,12 @@
 
 plugins {
     id 'java'
-    id 'cz.habarta.typescript-generator' version 'FILL_VERSION'
+    id 'de.tbosch.typescript-generator' version 'FILL_VERSION'
 }
 
 version = '3.0'
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 21
+targetCompatibility = 21
 
 repositories {
     mavenCentral()

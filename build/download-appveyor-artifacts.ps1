@@ -3,7 +3,7 @@
 $apiUrl = 'https://ci.appveyor.com/api'
 
 Write-Host -ForegroundColor DarkCyan "Getting appveyor project..."
-$project = Invoke-RestMethod -Method Get -Uri "$apiUrl/projects/vojtechhabarta/typescript-generator"
+$project = Invoke-RestMethod -Method Get -Uri "$apiUrl/projects/dickerpulli/typescript-generator"
 $jobId = $project.build.jobs[0].jobId
 
 $artifactsUri = "$apiUrl/buildjobs/$jobId/artifacts/target/artifacts.zip"
