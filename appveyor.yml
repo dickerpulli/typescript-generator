@@ -14,6 +14,8 @@ install:
 - ps: |-
     git remote set-url origin https://github.com/dickerpulli/typescript-generator.git
     git config --global credential.helper store
+    git config --global user.email "$($env:GITHUB_EMAIL)"
+    git config --global user.name "$($env:GITHUB_NAME)"
     Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_TOKEN):x-oauth-basic@github.com`n"
 build_script:
 - ps: |-
