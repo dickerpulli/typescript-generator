@@ -41,21 +41,6 @@
         <url>https://github.com/dickerpulli/typescript-generator</url>
     </scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh-vojtech@habarta.cz</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh-vojtech@habarta.cz</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <site>
-            <id>github.io</id>
-            <url>https://dickerpulli.github.io/typescript-generator</url>
-        </site>
-    </distributionManagement>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
@@ -189,22 +174,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
-                <executions>
-                    <!-- <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution> -->
-                    <!-- <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution> -->
-                </executions>
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
@@ -255,7 +224,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.12.1</version>
+                <version>3.21.0</version>
                 <configuration>
                     <skipDeploy>true</skipDeploy>
                 </configuration>
@@ -263,66 +232,33 @@
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>
                         <artifactId>doxia-module-markdown</artifactId>
-                        <version>1.12.0</version>
+                        <version>2.0.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>site</id>
-                        <configuration>
-                            <path>maven</path>
-                        </configuration>
-                        <inherited>false</inherited>
-                    </execution>
-                </executions>
-            </plugin>
-            <!--            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.5</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh-vojtech@habarta.cz</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
-                </configuration>
-            </plugin>-->
         </plugins>
 
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.github.github</groupId>
-                    <artifactId>site-maven-plugin</artifactId>
-                    <version>0.12</version>
-                    <executions>
-                        <execution>
-                            <id>site</id>
-                            <phase>site-deploy</phase>
-                            <goals>
-                                <goal>site</goal>
-                            </goals>
-                            <configuration>
-                                <message>Generated site for ${project.artifactId} ${project.version}</message>
-                                <merge>true</merge>
-                                <path>maven/${project.artifactId}</path>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-publish-plugin</artifactId>
+                    <version>3.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.4.5</version>
+                    <version>3.9.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.9.0</version>
+                    <version>3.15.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-report-plugin</artifactId>
+                    <version>3.15.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -385,14 +321,14 @@
                 </plugins>
             </build>
         </profile>
-        <!--        <profile>
+        <profile>
             <id>sign-artifacts</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>3.2.8</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -405,7 +341,7 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>-->
+        </profile>
     </profiles>
 
     <reporting>
@@ -416,7 +352,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
+                <artifactId>maven-plugin-report-plugin</artifactId>
             </plugin>
         </plugins>
     </reporting>

@@ -71,7 +71,7 @@ public class GenerateMojo extends AbstractMojo {
      * <li><code>ambientModule</code> - means that generated declarations will be wrapped in <code>declare module "mod" { }</code> declaration</li>
      * </ul>
      * Required parameter.
-     * For more information see <a href="http://vojtechhabarta.github.io/typescript-generator/doc/ModulesAndNamespaces.html">Modules and Namespaces</a> Wiki page.
+     * For more information see <a href="http://dickerpulli.github.io/typescript-generator/doc/ModulesAndNamespaces.html">Modules and Namespaces</a> Wiki page.
      */
     @Parameter(required = true)
     public TypeScriptOutputKind outputKind;
@@ -215,10 +215,11 @@ public class GenerateMojo extends AbstractMojo {
      * Library used in JSON classes.
      * Supported values are:
      * <ul>
-     * <li><code>jackson2</code> - annotations from `com.fasterxml.jackson.annotation` package</li>
-     * <li><code>jaxb</code> - annotations from `javax.xml.bind.annotation` package<li>
-     * <li><code>gson</code> - annotations from `com.google.gson.annotations` package<li>
-     * <li><code>jsonb</code> - annotations from `javax.json.bind.annotation` package<li>
+     * <li><code>jackson3</code> - annotations from `tools.jackson.databind.annotation` and `com.fasterxml.jackson.annotation` packages</li>
+     * <li><code>jackson2</code> - annotations from `com.fasterxml.jackson.databind` and `com.fasterxml.jackson.annotation` packages</li>
+     * <li><code>jaxb</code> - annotations from `javax.xml.bind.annotation` package</li>
+     * <li><code>gson</code> - annotations from `com.google.gson.annotations` package</li>
+     * <li><code>jsonb</code> - annotations from `javax.json.bind.annotation` package</li>
      * </ul>
      * Required parameter, recommended value is <code>jackson2</code>.
      */

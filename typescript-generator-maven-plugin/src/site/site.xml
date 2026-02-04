@@ -8,14 +8,14 @@
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>1.6</version>
+        <version>2.1.0</version>
     </skin>
     <custom>
         <fluidoSkin>
             <topBarEnabled>false</topBarEnabled>
             <sideBarEnabled>true</sideBarEnabled>
             <gitHub>
-                <projectId>vojtechhabarta/typescript-generator</projectId>
+                <projectId>dickerpulli/typescript-generator</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
                 <ribbonColor>green</ribbonColor>
             </gitHub>

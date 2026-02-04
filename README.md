@@ -3,7 +3,7 @@
 [![Stars](https://img.shields.io/github/stars/vojtechhabarta/typescript-generator.svg?style=social)](https://github.com/dickerpulli/typescript-generator)
 
 Quick links:
-[Configuration parameters](https://www.habarta.cz/typescript-generator/maven/typescript-generator-maven-plugin/generate-mojo.html)
+[Configuration parameters](https://dickerpulli.github.io/typescript-generator/generate-mojo.html)
 |
 [Breaking changes](https://github.com/dickerpulli/typescript-generator/wiki/Breaking-Changes)
 |

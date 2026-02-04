@@ -3,7 +3,7 @@
 - change version in `pom.xml` files and `appveyor.yml` (if not already changed)
 - wait for the build
 - run "Release to Maven Central" GitHub Action which releases last build
-- go to https://oss.sonatype.org and promote the release
+- go to https://central.sonatype.com and promote the release
     - "Staging Repositories"
     - "Close" the repo
     - wait for closing activities

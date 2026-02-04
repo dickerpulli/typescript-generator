@@ -69,6 +69,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>plugin-site-deploy</id>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>publish-scm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <pubScmUrl>scm:git:https://github.com/dickerpulli/typescript-generator.git</pubScmUrl>
+                    <scmBranch>gh-pages</scmBranch>
+                    <content>${project.build.directory}/site</content>
+                    <checkinComment>Publish plugin site for ${project.version}</checkinComment>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
