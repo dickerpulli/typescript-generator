@@ -1,6 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/de.tbosch.typescript-generator/typescript-generator-core.svg)](https://repo1.maven.org/maven2/de/tbosch/typescript-generator/typescript-generator-core/)
-[![Appveyor](https://img.shields.io/appveyor/ci/vojtechhabarta/typescript-generator/main.svg)](https://ci.appveyor.com/project/dickerpulli/typescript-generator)
-[![Stars](https://img.shields.io/github/stars/vojtechhabarta/typescript-generator.svg?style=social)](https://github.com/dickerpulli/typescript-generator)
+[![Appveyor](https://img.shields.io/appveyor/ci/dickerpulli/typescript-generator/main.svg)](https://ci.appveyor.com/project/dickerpulli/typescript-generator)
+[![Stars](https://img.shields.io/github/stars/dickerpulli/typescript-generator.svg?style=social)](https://github.com/dickerpulli/typescript-generator)
 
 Quick links:
 [Configuration parameters](https://dickerpulli.github.io/typescript-generator/generate-mojo.html)
