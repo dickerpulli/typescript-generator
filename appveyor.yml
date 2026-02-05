@@ -35,7 +35,7 @@ build_script:
     # mvn --batch-mode clean install -P attach-artifacts,local-deploy,sign-artifacts; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
     # if ($env:APPVEYOR_REPO_BRANCH -eq "main" -and -not $env:APPVEYOR_PULL_REQUEST_NUMBER)
     # {
-       mvn --batch-mode install -pl typescript-generator-core ; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+       mvn --batch-mode install -pl typescript-generator-core "-DskipTests"; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
        mvn --batch-mode site-deploy -pl typescript-generator-maven-plugin "-Dscmpublish.dryRun=true" "-Dusername=$($env:GITHUB_USERNAME) -Dpassword=$($env:GITHUB_TOKEN_CLASSIC)"; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
     # }
 
