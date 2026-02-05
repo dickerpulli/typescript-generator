@@ -8,7 +8,7 @@ init:
 - ps: |-
     if ($env:APPVEYOR_REPO_BRANCH -ne "main" -or $env:APPVEYOR_PULL_REQUEST_NUMBER)
     {
-        $env:APPVEYOR_CACHE_SKIP_SAVE = "true"
+        # $env:APPVEYOR_CACHE_SKIP_SAVE = "true"
     }
 install:
 - ps: |-
