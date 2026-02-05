@@ -31,7 +31,7 @@ build_script:
     [System.IO.File]::WriteAllBytes("/gpg_signing_key.bin", $gpg_signing_key)
     gpg --batch --yes --import c:\gpg_signing_key.bin
     mvn -version
-    mvn scm-publish:publish-scm -Dscmpublish.dryRun=true -Dusername="$($env:GITHUB_USERNAME)" -Dpassword="$($env:GITHUB_TOKEN_CLASSIC)"; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+    mvn -B scm-publish:publish-scm -Dscmpublish.dryRun=true -Dusername="$($env:GITHUB_USERNAME)" -Dpassword="$($env:GITHUB_TOKEN_CLASSIC)"; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
     # mvn --batch-mode versions:set "-DnewVersion=$($env:APPVEYOR_BUILD_VERSION)"; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
     # mvn --batch-mode clean install -P attach-artifacts,local-deploy,sign-artifacts; if ($LASTEXITCODE -ne 0) { throw "Build failed" }
     # if ($env:APPVEYOR_REPO_BRANCH -eq "main" -and -not $env:APPVEYOR_PULL_REQUEST_NUMBER)
