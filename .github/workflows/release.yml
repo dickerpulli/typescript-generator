@@ -3,17 +3,45 @@ name: Release to Maven Central
 
 on:
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Run ID of Build-Workflow to release from'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  JAVA_VERSION: '21'
+  JAVA_DISTRIBUTION: 'temurin'
 
 jobs:
-  release:
-    runs-on: windows-latest
+  deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout workflow
-        uses: actions/checkout@v2
-      - name: Release
-        run: |
-          ./build/release-build.ps1
+      - name: Download artifacts from build workflow
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Sonatype
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SONATYPE_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        run: |
+          curl -u "${SONATYPE_USERNAME}:${SONATYPE_PASSWORD}" \
+            -F "bundle=@artifacts.zip" \
+            -X POST \
+            -v \
+            https://central.sonatype.com/api/v1/publisher/upload
+
+          if [ $? -eq 0 ]; then
+            echo "✓ Successfully uploaded artifacts.zip to Sonatype Central"
+          else
+            echo "✗ Failed to upload artifacts.zip"
+            exit 1
+          fi

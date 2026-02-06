@@ -1,0 +1,106 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+
+env:
+  JAVA_VERSION: '21'
+  JAVA_DISTRIBUTION: 'temurin'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: 'maven'
+
+      - name: Configure Git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global credential.helper store
+          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+          chmod 600 ~/.git-credentials
+
+      - name: Import GPG key
+        env:
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          if [ -z "$GPG_SIGNING_KEY" ]; then
+            echo "Error: GPG_SIGNING_KEY secret is not set"
+            exit 1
+          fi
+          echo "$GPG_SIGNING_KEY" | base64 -d > /tmp/gpg_signing_key.bin
+          gpg --batch --yes --import /tmp/gpg_signing_key.bin
+          rm /tmp/gpg_signing_key.bin
+
+          # Configure GPG for non-interactive mode
+          echo "use-agent" >> ~/.gnupg/gpg.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo RELOADAGENT | gpg-connect-agent
+
+      - name: Set version
+        run: |
+          VERSION="3.4.${{ github.run_number }}"
+          echo "BUILD_VERSION=$VERSION" >> $GITHUB_ENV
+          mvn --batch-mode versions:set -DnewVersion=$VERSION
+
+      - name: Build with Maven
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          mvn --batch-mode clean install -P attach-artifacts,local-deploy,sign-artifacts \
+            -Dgpg.pinentry-mode=loopback -Dgpg.batch=true -Dgpg.passphrase="${GPG_PASSPHRASE}"
+
+      - name: Deploy site
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn --batch-mode site-deploy
+
+      - name: Prepare artifacts
+        run: |
+          find target/artifacts -name "maven-metadata.xml*" -delete
+          cd target/artifacts
+          zip -r ../artifacts.zip .
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: target/artifacts.zip
+          retention-days: 7
+
+      - name: Create and push tag
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ env.BUILD_VERSION }}"
+          echo "Creating tag: $TAG"
+          git tag "$TAG" ${{ github.sha }}
+          git push origin "$TAG"

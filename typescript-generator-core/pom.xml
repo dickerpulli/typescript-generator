@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.codecentric.typescript-generator</groupId>
         <artifactId>typescript-generator</artifactId>
-        <version>3.3-SNAPSHOT</version>
+        <version>3.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>typescript-generator-core</artifactId>

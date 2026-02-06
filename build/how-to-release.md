@@ -1,8 +1,8 @@
 # How to release typescript-generator
 
-- change version in `pom.xml` files and `appveyor.yml` (if not already changed)
-- wait for the build
-- run "Release to Maven Central" GitHub Action which releases last build
+- change version in `pom.xml` files and `.github/workflows/build.yml` (if not already changed)
+- wait for the build of GitHub Action "Build"
+- run "Release to Maven Central" GitHub Action which releases the artifacts from build of GitHub Action "Build"
 - go to https://central.sonatype.com and promote the release
     - "Staging Repositories"
     - "Close" the repo
