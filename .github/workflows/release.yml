@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: 'Run ID of Build-Workflow to release from'
+        description: 'Run ID of Build-Workflow to release from (take from URL of GitHub Action)'
         required: true
         type: string
 
