@@ -4,12 +4,12 @@
 
     <groupId>io.github.kkuegler</groupId>
     <artifactId>sample-maven-spring</artifactId>
-    <version>dev-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>sample-maven-spring</name>
 
     <properties>
-        <typescript-generator.version>dev-SNAPSHOT</typescript-generator.version>
+        <typescript-generator.version>4.0.0-SNAPSHOT</typescript-generator.version>
     </properties>
 
     <dependencies>

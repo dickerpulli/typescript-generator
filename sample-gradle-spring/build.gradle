@@ -8,7 +8,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        /*dev*/ classpath 'io.github.kkuegler:typescript-generator-spring:dev-SNAPSHOT'
+        /*dev*/ classpath 'io.github.kkuegler:typescript-generator-spring:4.0.0-SNAPSHOT'
     }
 }
 
